@@ -1,0 +1,317 @@
+body{
+    background: var(--primary);
+    overflow-x: hidden;
+}
+
+nav{
+    position: fixed;
+    width: 100%;
+    height: 46px;
+    background: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px -1px var(--primary-lighter);
+    z-index: 100;
+}
+
+nav .logo{
+    position: relative;
+    left: 52px;
+    font-size: 22px;
+    color: var(--secondary);
+    letter-spacing: 2px;
+    font-weight: 500;
+    text-decoration: none;
+    outline: none;
+}
+
+nav .logo .icon{
+    height: 22px;
+    aspect-ratio: 1;
+    background: url(/svgs/icon2.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+nav .links{
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    position: absolute;
+    right: 200px;
+    top: 0;
+    justify-content: right;
+    align-items: center;
+    gap: 120px;
+}
+
+nav .links a{
+    font-size: 20px;
+    color: var(--light);
+    text-decoration: none;
+    padding: 3px 10px;
+    display: block;
+    letter-spacing: 1px;
+    transition: all 200ms;
+    outline: none;
+}
+
+nav .links a:hover,
+nav .links a:focus{
+    color: var(--lightest);
+}
+
+nav .links a .underline{
+    display: block;
+    height: 2px;
+    width: calc(100% + 8px);
+    background: var(--lightest);
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+    opacity: 0;
+    transition: opacity 200ms;
+    border-radius: 1px 2px 1px 2px;
+}
+
+nav .links a:hover .underline,
+nav .links a:focus .underline{
+    opacity: 1;
+    animation: underlineSlide 350ms forwards;
+}
+
+main{
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    height: 420px;
+    width: 400px;
+    background: var(--primary-light);
+    border-radius: 2px;
+    z-index: 2;
+}
+
+main .title{
+    color: var(--secondary);
+    font-weight: 500;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.field{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.field label{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 100%;
+    font-size: 20px;
+    color: var(--light);
+    pointer-events: none;
+    transition: all 250ms;
+}
+
+
+.field input{
+    display: block;
+    height: 34px;
+    width: 300px;
+    font-size: 20px;
+    outline: none;
+    background: transparent;
+    border: none;
+    border-radius: 1px;
+    border-bottom: 3px solid var(--light);
+    color: var(--lightest);
+    padding: 0 6px;
+}
+
+.field input:focus-within{
+    caret-color: var(--primary-lighter);
+}
+
+.field input:not(:placeholder-shown),
+.field input:focus{
+    border-color: var(--lightest);
+}
+
+.field input:not(:placeholder-shown) + label,
+.field input:focus + label{
+    top: -18px;
+    left: 0px;
+    font-size: 14px;
+}
+.field input:not(:placeholder-shown) + label span,
+.field input:focus + label span{
+    font-size: 8px;
+}
+
+input[type="submit"]{
+    margin-top: 40px;
+    margin-left: 40px;
+    width: fit-content;
+    padding: 4px 14px;
+    background: var(--secondary);
+    color: var(--primary);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 400;
+    box-shadow: 2px 2px var(--secondary-dark);
+    transform: translate(-1px, -1px);
+    outline: none;
+    border: none;
+}
+
+input[type="submit"]{
+    padding: 3px 16px;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus{
+    box-shadow: 2px 2px transparent;
+    transform: translate(0px, 0px);
+}
+
+.container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.login-text{
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    color: var(--light);
+}
+
+.login-text a{
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.eye{
+    background: url(/svgs/eye_closed.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 28px;
+    aspect-ratio: 1;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    transform: translate(-50%, -50%);
+}
+
+.eye.open{
+    background: url(/svgs/eye_open.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.eye:hover{
+    cursor: pointer;
+}
+
+.pw-requirements{
+    color: var(--light);
+    font-size: 16px;
+    position: absolute;
+    right: 140px;
+    bottom: 155px;
+    transform: translate(50%, 50%);
+}
+
+.pw-requirements span{
+    display: block;
+    position: relative;
+    left: 20px;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.pw-requirements span .icon{
+    position: absolute;
+    background: url(/svgs/cross.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    height: 16px;
+    aspect-ratio: 1;
+    left: 0;
+    transform: translate(-120%, 15%);
+}
+
+.pw-requirements span .icon.checked{
+    background: url(/svgs/checkmark.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+footer{
+    background: url(/svgs/footer.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    aspect-ratio: 900 / 100;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+}
+
+.sat-container{
+    position: absolute;
+    top: 80px;
+    height: 60px;
+    width: 100%;
+}
+
+.sat{
+    height: 60px;
+    aspect-ratio: 158 / 150;
+    display: block;
+    background: url(/svgs/svg1.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: .5;
+    animation: hoverRight 120s infinite;
+    animation-delay: 5s;
+    position: absolute;
+    left: -200px;
+    top: 0;
+    transform: rotate(0deg);
+}
+
+@keyframes underlineSlide {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: calc(100% + 8px);
+    }
+}
+
+@keyframes hoverRight{
+    0%{
+        left: -100px;
+        transform: rotate(-25deg);
+    }
+    100%{
+        left: 100%;
+        transform: rotate(25deg);
+    }
+}

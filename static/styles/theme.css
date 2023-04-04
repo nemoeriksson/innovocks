@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap');
+
+:root{
+    --primary: #172128;
+    --primary-light: #2e373e;
+    --primary-lighter: #67727A;
+    --light: #C3CFD8;
+    --lightest: #dedee9;
+    --secondary: #EB9A28;
+    --secondary-dark: #955300;
+    --accent: #A15DE8;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+    caret-color: transparent;
+    scroll-behavior: smooth;
+}
+
+.select-light::selection{
+    background: var(--primary-lighter)
+}
+
+.select-hidden::selection{
+    background: transparent;
+}
