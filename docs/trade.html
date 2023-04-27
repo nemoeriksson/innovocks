@@ -12,17 +12,36 @@
 		<link rel="modulepreload" href="./_app/immutable/entry/layout.svelte.2212432a.js">
 		<link rel="modulepreload" href="./_app/immutable/entry/_layout.js.984db11e.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout.da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/userpage-page.svelte.090958ec.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/trade-page.svelte.45526000.js">
 	</head>
 	<div style="display: contents">
 	
 
 
-<head>
+<head><title>Trading</title>
     <link rel="stylesheet" href="/styles/theme.css">
-    <link rel="stylesheet" href="/styles/userpage.css"></head>
+    <link rel="stylesheet" href="/styles/trade.css"></head>
 
+<body><script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/js/themes/dark-unica.js"></script>
 
+    <nav><a href="/" class="logo select-hidden logo-font"><span class="icon"></span> Innovocks</a>
+        <div class="links"><a href="/userpage" class="select-hidden">Profile <span class="underline"></span></a>
+            <a href="/" class="select-hidden">Log out <span class="underline"></span></a></div></nav>
+
+    <section class="stock-list"><div class="title-section"><p class="select-light title">Stocks</p>
+            <hr></div>
+        
+        <div class="stocks"><table></table></div></section>
+
+    <section class="detailed-view"><div class="title-section"><p class="select-light title">Click a stock listing to show details</p>
+            <hr></div></section>
+
+    <section class="detailed-view hidden"></section></body>
 
 
 			
@@ -41,7 +60,7 @@
 						import("./_app/immutable/entry/app.d9a0ae83.js")
 					]).then(([kit, app]) => {
 						kit.start(app, __sveltekit_1hjtun3.element, {
-							node_ids: [0, 7],
+							node_ids: [0, 6],
 							data,
 							form: null,
 							error: null

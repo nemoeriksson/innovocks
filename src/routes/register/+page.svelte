@@ -37,7 +37,7 @@ function createAccount(){
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
         sessionStorage.setItem('currentUser', JSON.stringify(newUser));
-        window.location = "/userpage/";
+        window.location = "/userpage";
         return true;
     }
     
@@ -61,7 +61,7 @@ function validate(){
 
 <body>
     <nav>
-        <a href="/" class="logo select-light"><span class="icon"></span> Placeholder Title</a>
+        <a href="/" class="logo select-hidden logo-font"><span class="icon"></span> Innovocks</a>
         <div class="links">
             <a href="/" class="select-hidden">Home <span class="underline"></span></a>
             <a href="/login" class="select-hidden">Log In<span class="underline"></span></a>
@@ -89,10 +89,10 @@ function validate(){
             <input type="submit" value="Register">
             <div class="pw-requirements select-light">
                 Password requirements
-                <span><span class="icon {hasLength ? 'checked' : ''}"></span> 8 or more total characters</span>
-                <span><span class="icon {hasUppercase ? 'checked' : ''}"></span> 1 Upper case letter</span>
-                <span><span class="icon {hasLowercase ? 'checked' : ''}"></span> 1 Lower case letter</span>
-                <span><span class="icon {hasNumber ? 'checked' : ''}"></span> 1 or more numbers</span>
+                <span class="select-light"><span class="icon {hasLength ? 'checked' : ''}"></span> 8 or more total characters</span>
+                <span class="select-light"><span class="icon {hasUppercase ? 'checked' : ''}"></span> 1 Upper case letter</span>
+                <span class="select-light"><span class="icon {hasLowercase ? 'checked' : ''}"></span> 1 Lower case letter</span>
+                <span class="select-light"><span class="icon {hasNumber ? 'checked' : ''}"></span> 1 or more numbers</span>
             </div>
         </form>
         

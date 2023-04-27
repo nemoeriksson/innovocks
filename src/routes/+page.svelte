@@ -3,24 +3,25 @@
 </script>
 
 <head>
-    <title>Placeholder Title</title>
+    <title>Innovocks</title>
     <link rel="stylesheet" href="/styles/theme.css">
     <link rel="stylesheet" href="/styles/home.css">
 </head>
 
 <body>
     <nav>
-        <a href="/" class="logo select-light"><span class="icon"></span> Placeholder Title</a>
+        <a href="/" class="logo select-hidden logo-font"><span class="icon"></span> Innovocks</a>
         <div class="links">
             <a href="/login" class="select-hidden">Log In<span class="underline"></span></a>
             <a href="/register" class="select-hidden">Register<span class="underline"></span></a>
             <a href="#contact" class="select-hidden">Contact<span class="underline"></span></a>
+            <a href="/changelog" class="select-hidden">Changelog<span class="underline"></span></a>
         </div>
     </nav>
 
     <main>
         <div class="title-section">
-            <p class="title select-light">Placeholder Title</p>
+            <p class="title select-light">Welcome to <span class="logo-font select-light">Innovocks</span></p>
             <p class="description select-light">Placeholder text placeholder text placeholder text placeholder text placeholder text placeholder text placeholder text </p>
             <a href="/register" class="CTA select-hidden">Register</a>
         </div>
@@ -30,9 +31,10 @@
 
     <section class="feature-section">
         <div class="container">
-            <p class="title select-light">Placeholder title</p>
-            <p class="description select-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus soluta, saepe velit doloremque non, temporibus voluptatum, beatae et voluptate facere hic. Obcaecati ipsam facere facilis modi omnis architecto, temporibus fuga quos.</p>
+            <p class="title select-light">Real-time stock data</p>
+            <p class="description select-light">Learn trading by using real-time stock prices acquired by the AlphaVantage API. Prices are listed intradaily with a 5 minute interval in a easy to read graph</p>
         </div>
+        <img src="/imgs/stockView.png" alt="graphImage" class="select-hidden"/>
     </section>
     
     <section class="feature-section">

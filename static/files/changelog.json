@@ -1,0 +1,74 @@
+{
+    "0.2.0": [
+        {
+            "type": "date",
+            "content": "April 27th 2023"
+        },
+        {
+            "type": "added",
+            "content": "Trade page with real-time stock prices using the AlphaVantage API"
+        },
+        {
+            "type": "added",
+            "content": "Graph over live stock prices"
+        },
+        {
+            "type": "added",
+            "content": "List of tradable stocks (more coming soon)"
+        },
+        {
+            "type": "added",
+            "content": "Changelog page and link from homepage"
+        },
+        {
+            "type": "added",
+            "content": "Link to full changelog on github"
+        },
+        {
+            "type": "improved",
+            "content": "Replaced placeholder titles with the new Innovocks name and font"
+        },
+        {
+            "type": "fixed",
+            "content": "Links to the user page when making account or logging in no longer returns 404 error"
+        },
+        {
+            "type": "fixed",
+            "content": "Selection of password requirements now follows the color scheme"
+        },
+        {
+            "type": "description",
+            "content": "A bit update with both this new changelog page and the trading page where users will be able to buy/sell stocks using real-time data. There were also some small QoL changes"
+        }
+    ],
+    "0.1.0": [
+        {
+            "type": "date",
+            "content": "April 4th 2023"
+        },
+        {
+            "type": "added",
+            "content": "Homepage with links to registration/login pages and contact section"
+        },
+        {
+            "type": "added",
+            "content": "Contact Us section (functionality is still work in progress)"
+        },
+        {
+            "type": "added",
+            "content": "Sections for feature points on homepage"
+        },
+        {
+            "type": "added",
+            "content": "Registration and login pages with implemented logic"
+        },
+        {
+            "type": "added",
+            "content": "Password requirements, validation and encryption"
+        },
+        {
+            "type": "description",
+            "content": "Initial publishing of the website. Very bare bones, a lot of work in progress with only homepage and registration/login features. "
+        }
+    ]
+}

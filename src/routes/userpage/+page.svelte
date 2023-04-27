@@ -23,14 +23,15 @@ onMount(()=>{
 {#if userdata != null}
 <body>
     <nav>
-        <a href="/" class="logo select-light"><span class="icon"></span> Placeholder Title</a>
+        <a href="/" class="logo select-hidden logo-font"><span class="icon"></span> Innovocks</a>
         <div class="links">
-            <a href="/" class="select-hidden">Home <span class="underline"></span></a>
+            <a href="/trade" class="select-hidden">Trade <span class="underline"></span></a>
+            <a href="/" class="select-hidden">Log out <span class="underline"></span></a>
         </div>
     </nav>
 
     <main>
-        
+
     </main>
 </body>
 {/if}

@@ -1,14 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap');
 
+@font-face {
+    font-family: 'Mountain';
+    font-weight: 400;
+    font-style: normal;
+    src: url("/files/Mountain.woff2") format("woff2");
+}
+
 :root{
     --primary: #172128;
     --primary-light: #2e373e;
     --primary-lighter: #67727A;
+    --primary-lightest: #9AA6AE;
     --light: #C3CFD8;
     --lightest: #dedee9;
     --secondary: #EB9A28;
     --secondary-dark: #955300;
-    --accent: #A15DE8;
+    --accent: #8f3be9;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track{
+    background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb{
+    background: var(--primary-light);
 }
 
 *{
@@ -20,10 +40,105 @@
     scroll-behavior: smooth;
 }
 
+nav{
+    position: fixed;
+    width: 100%;
+    height: 46px;
+    background: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px -1px var(--primary-lighter);
+    z-index: 100;
+}
+
+nav .logo{
+    position: relative;
+    left: 52px;
+    font-size: 24px;
+    color: var(--secondary);
+    letter-spacing: 2px;
+    font-weight: 500;
+    text-decoration: none;
+    outline: none;
+    transform: translateY(-2px);
+}
+
+nav .logo .icon{
+    height: 22px;
+    transform: translateY(3px);
+    aspect-ratio: 1;
+    background: url(/svgs/icon2.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+nav .links{
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    position: absolute;
+    right: 160px;
+    top: 0;
+    justify-content: right;
+    align-items: center;
+    gap: 80px;
+}
+
+nav .links a{
+    font-size: 20px;
+    color: var(--light);
+    text-decoration: none;
+    padding: 3px 10px;
+    display: block;
+    letter-spacing: 1px;
+    transition: all 200ms;
+    outline: none;
+}
+
+nav .links a:hover,
+nav .links a:focus{
+    color: var(--lightest);
+}
+
+nav .links a .underline{
+    display: block;
+    height: 2px;
+    width: calc(100% + 8px);
+    background: var(--lightest);
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+    opacity: 0;
+    transition: opacity 200ms;
+    border-radius: 1px 2px 1px 2px;
+}
+
+nav .links a:hover .underline,
+nav .links a:focus .underline{
+    opacity: 1;
+    animation: underlineSlide 350ms forwards;
+}
+
+.logo-font{
+    font-family: 'Mountain', 'Oswald', sans-serif;
+}
+
 .select-light::selection{
     background: var(--primary-lighter)
 }
 
 .select-hidden::selection{
     background: transparent;
+}
+
+@keyframes underlineSlide {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: calc(100% + 8px);
+    }
 }

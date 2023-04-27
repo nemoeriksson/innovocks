@@ -13,7 +13,7 @@ function checkLogin(){
         console.log(`${user['user'][0]}${sha256(form['password'].value).toString()}`);
         if(user['pw'] == `${user['user'][0]}${sha256(form['password'].value).toString()}` && user['user']==form['username'].value){
             sessionStorage.setItem('currentUser', JSON.stringify(user));
-            window.location = '/userpage/';
+            window.location = '/userpage';
             return true;
         }
     });
@@ -29,7 +29,7 @@ function checkLogin(){
     
     <body>
         <nav>
-            <a href="/" class="logo select-light"><span class="icon"></span> Placeholder Title</a>
+            <a href="/" class="logo select-hidden logo-font"><span class="icon"></span> Innovocks</a>
             <div class="links">
                 <a href="/" class="select-hidden">Home <span class="underline"></span></a>
                 <a href="/register" class="select-hidden">Register<span class="underline"></span></a>
