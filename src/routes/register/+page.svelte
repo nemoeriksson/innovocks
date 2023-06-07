@@ -19,7 +19,6 @@ function createAccount(){
         data: {
             'budget': 100000,
             'stocks': {},
-            'stockValue': 0,
         },
     }
 

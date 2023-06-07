@@ -1,5 +1,6 @@
 <script>
 import sha256 from 'crypto-js/sha256';
+import { onMount } from 'svelte';
 
 let form;
 let showPw = false;
@@ -14,10 +15,15 @@ function checkLogin(){
         if(user['pw'] == `${user['user'][0]}${sha256(form['password'].value).toString()}` && user['user']==form['username'].value){
             sessionStorage.setItem('currentUser', JSON.stringify(user));
             window.location = '/userpage';
-            return true;
+            return true; 
         }
     });
 }
+
+onMount(()=>{
+    if(JSON.parse(sessionStorage.getItem('currentUser')) != undefined)
+        window.location = '/userpage'; 
+});
 
 </script>
     

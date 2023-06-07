@@ -1,4 +1,30 @@
 {
+    "0.3.0": [
+        {
+            "type": "date",
+            "content": "June 7th 2023"
+        },
+        {
+            "type": "added",
+            "content": "Functionality to buy/sell stocks"
+        },
+        {
+            "type": "added",
+            "content": "Userpage now has general user stats"
+        },
+        {
+            "type": "improved",
+            "content": "Users automatically logged in if in same session"
+        },
+        {
+            "type": "improved",
+            "content": "Slight improvements of the trade page buttons and graph"
+        },
+        {
+            "type": "description",
+            "content": "Includes more functionality to the trading page and user data on the account page and some very small QoL changes."
+        }
+    ],
     "0.2.0": [
         {
             "type": "date",

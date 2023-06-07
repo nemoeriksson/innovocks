@@ -1,22 +1,54 @@
 <script>
 import { onMount } from "svelte";
+import { saveUserData, keys } from "../../stores";
+
+const decimals = 2;
 
 let data = [];
 let showingDetailed = false;
 let detailedData = undefined;
-const keys = ['EYLHD54ANLK9PH46','SIBNYQ6NRXGA5L9X','Y8164UHSNHTR7NTP','762H20UFF2CJVEHP','RNVZL2M74XAFFQS0','F46PNCGPM32UNOJI','K0UB0JS4QXHNLWED', 'A738NKYH7AXPQ11X', 'W1D8N6M9X978RQ9O', '8KQMNHWC6HL2YSJ7', '4N6ETIY0J58GVW7P', '6RW7HHE2AYNY07CJ', 'F0WSS307XFFXFL52', 'A7TRLSYW4HC2LMZM', 'JHNBU6ZCGB8O86G9', 'UXA4Y3EOJILEITUX', '5DVNGIZEWM63SLBW', 'KK5JT8FUU7OYVL8B', 'LXG5OWTGJN2P3BN9', 'JBUYMHC1IT82PGSB', 'Q3S1EOJB5NFB0BJB', 'YR0JH6WEVCGQD6XA', '538NJ32TA392W0SC', 'F7284O4455H1AGSH', '37X85AIWKXH9VIDO', 'Z4CYHMU0DK2E0EQ4', '5AKNLV6J5ZG6WMA6', '1MAVYX37T98VNQIA', 'DPIZL3YC2RUACXKP', 'GN61NMGBHB8XJMUD', '1N4C74HI99MIRKPZ'];
 let keyindex = Math.floor(Math.random()*keys.length);
 let currentPrice;
 let inputElementAmount;
 let inputElementPrice;
 let lastSymbol;
+let userData = null;
+
+function buyStock(){
+    if(inputElementPrice.value >= 1){
+        if(!userData['data']['stocks'].hasOwnProperty(detailedData['symbol'])){
+            userData['data']['stocks'][detailedData['symbol']] = parseFloat(inputElementAmount.value);
+        }
+        else{
+            userData['data']['stocks'][detailedData['symbol']] += parseFloat(inputElementAmount.value);
+        }
+        userData['data']['budget'] -= parseFloat(inputElementPrice.value); 
+        saveUserData(userData);
+        inputElementAmount.value = null;
+        inputElementPrice.value = null;
+    }
+}
+
+function sellStock(){
+    if(inputElementAmount.value > 0){
+        if(userData['data']['stocks'].hasOwnProperty(detailedData['symbol'])){
+            if(userData['data']['stocks'][detailedData['symbol']] >= inputElementAmount.value){
+                userData['data']['stocks'][detailedData['symbol']] -= parseFloat(inputElementAmount.value);
+                userData['data']['budget'] += parseFloat(inputElementPrice.value);
+                saveUserData(userData);
+                inputElementAmount.value = null;
+                inputElementPrice.value = null;          
+            }
+        }
+    }
+}
 
 function amountToPrice(){
-    inputElementPrice.value = Math.round(currentPrice*inputElementAmount.value*100)/100;
+    inputElementPrice.value = Math.round(currentPrice*inputElementAmount.value*(10**decimals))/(10**decimals);
 }
 
 function priceToAmount(){
-    inputElementAmount.value = Math.round((inputElementPrice.value/currentPrice)*100)/100;
+    inputElementAmount.value = Math.round((inputElementPrice.value/currentPrice)*(10**decimals))/(10**decimals);
 }
 
 function showDetails(entry){
@@ -28,21 +60,31 @@ function showDetails(entry){
     detailedData = entry;
 }
 
-async function getData(symbol){
+async function getData(symbol, a=0){
     if (lastSymbol != symbol){
         let result = [];
-        let key = keys[keyindex]; keyindex++;    
+        let key = keys[keyindex]; keyindex++;   
+        if(keyindex>keys.length){ keyindex = 0; } 
         const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${key}`;
 
         const response = await fetch(url);
         const responseData = await response.json();
         const stockData = await responseData['Time Series (5min)'];
         
+        if(stockData == null || stockData == undefined){
+            console.log(`Error collecting data for ${symbol} using ${key}`);
+            if(a<keys.length){
+                getData(symbol, a+1);
+            }
+            return;
+        }
+
         let i = 0
         for(const [key,value] of Object.entries(stockData)){
             result.push([key, parseFloat(value['1. open'])]);
             i+=5;
         }
+
         currentPrice = result[0][1];
         result = result.reverse();
 
@@ -85,10 +127,22 @@ async function getData(symbol){
     lastSymbol = symbol;
 }
 
+function checkValue(value){
+    if(value == undefined || value == NaN) { return 0 };
+    return value;
+}
+
 onMount(async ()=>{
+    userData = JSON.parse(sessionStorage.getItem('currentUser'));
+    if(userData == null){
+        window.location = '/login';
+    }
+    
     fetch('/files/stocks.json').then((response)=>response.json()).then((json)=>{
         data = Object.entries(json);
-    });
+        showDetails(data[1][1]);
+        getData('AMZN');
+    }); 
 });        
 </script>
 
@@ -101,9 +155,6 @@ onMount(async ()=>{
 <body>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://code.highcharts.com/js/themes/dark-unica.js"></script>
 
     <nav>
@@ -155,7 +206,18 @@ onMount(async ()=>{
     <section class="detailed-view" class:hidden={!showingDetailed}>
         {#if detailedData!=undefined}
             <div class="title-section">
-                <p class="select-light title">{detailedData['symbol']} | {detailedData['company']}</p>
+                <p class="title">
+                    <span class="tooltipParent select-light">
+                        {detailedData['symbol']} | {detailedData['company']}
+                        <span class="tooltip select-light">{detailedData['description']}</span>
+                    </span>
+                    <span class="rightAlign select-light">
+                        {(Math.round(userData['data']['budget']*100)/100).toLocaleString('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                        })}    
+                    </span>
+                </p>
                 <hr/>
             </div>
 
@@ -165,7 +227,13 @@ onMount(async ()=>{
             
             <div class="trade">
                 <div class="title-section">
-                    <p class="select-light title">Trade {detailedData['symbol']}</p>
+                    <p class="select-light title">
+                        Trade {detailedData['symbol']}
+                        <span class="rightAlign select-light">
+                            Owned: {checkValue(userData['data']['stocks'][detailedData['symbol']])} | 
+                            Value: {checkValue(userData['data']['stocks'][detailedData['symbol']]) * currentPrice}
+                        </span>
+                    </p>
                     <hr/>
                 </div>
                 
@@ -180,8 +248,8 @@ onMount(async ()=>{
                             on:change={()=>{priceToAmount()}} bind:this={inputElementPrice}/>
                         <label for="amount" class="select-hidden">Price ($USD)</label>                
                     </div>
-                    <div class="select-hidden button">Buy</div>
-                    <div class="select-hidden button">Sell</div>
+                    <div class="select-hidden button" on:click={buyStock} on:keypress={buyStock}>Buy</div>
+                    <div class="select-hidden button" on:click={sellStock} on:keypress={sellStock}>Sell</div>
                 </div>
             </div>
 

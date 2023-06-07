@@ -9,8 +9,91 @@ main{
     left: 50%;
     top: calc(50% + 23px);
     transform: translate(-50%, -50%);
-    height: 82.5%;
-    width: 82.5%;
+    height: 77.5%;
+    width: 77.5%;
     border-radius: 3px;
 }
 
+.welcome-section{
+    background: var(--primary-light);
+    width: 300px;
+    height: 180px;
+    margin: 19px 0 0 30px;
+}
+
+.welcome-section .title{
+    color: var(--secondary);
+    font-size: 28px;
+}
+.welcome-section .subtitle{
+    color: var(--secondary);
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+.data{
+    color: var(--light);
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+.profits{
+    color: #2b9a45;
+}
+
+.negative{
+    color: red;
+}
+
+.welcome-section .divider{
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--secondary) 10%, var(--secondary) 75%, transparent);
+    width: 80%;
+    position: relative;
+    left: -10px;
+    border: none;
+    margin: 10px 0 4px 0;
+}
+
+.history{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translateY(-25%);
+}
+
+.highcharts-figure{
+    width: 600px;
+    margin-top: 15px;
+    margin-left: 25px;
+    box-shadow: 0px 0px 8px 2px #303031;
+    margin: auto 5% 0 auto;
+    transform: translateY(-27px);
+}
+
+.link-button{
+    position: absolute;
+    bottom: 50px;
+    right: 61px;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    padding: 4px 14px;
+    background: var(--secondary);
+    color: var(--primary);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 400;
+    box-shadow: 2px 2px var(--secondary-dark);
+    transform: translate(-1px, -1px);
+    outline: none;
+    border: none;
+}
+.link-button:hover,
+.link-button:focus{
+    box-shadow: 2px 2px transparent;
+    transform: translate(0px, 0px);
+}

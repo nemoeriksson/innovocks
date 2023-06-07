@@ -6,6 +6,7 @@ let data = [];
 onMount(()=>{
     fetch('/files/changelog.json').then((response)=>response.json()).then((json)=>{
         data = Object.entries(json);
+        console.log(data);
     });
 });
 </script>
